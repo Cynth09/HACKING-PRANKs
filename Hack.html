@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hacking Prank</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #000;
+            color: #00ff00; /* Bright green color */
+            font-family: 'Courier New', Courier, monospace;
+            text-shadow: 0 0 10px #00ff00, 0 0 20px #00ff00; /* Glowing text effect */
+            overflow: hidden;
+        }
+        #loading {
+            width: 80%;
+            height: 30px;
+            background-color: #444;
+            border-radius: 5px;
+            overflow: hidden;
+            margin-top: 20px;
+        }
+        #progress {
+            height: 100%;
+            background-color: #00ff00; /* Bright green loading bar */
+            width: 0%;
+        }
+        #message {
+            margin-top: 20px;
+            font-size: 24px;
+            text-align: center;
+        }
+        #creepyEffect {
+            display: none;
+            color: red; /* Creepy color */
+            font-size: 28px;
+            text-shadow: 0 0 10px red, 0 0 20px red; /* Glowing red effect */
+            position: absolute;
+            top: 40%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        #finalMessage {
+            display: none;
+            color: red; /* Bloody red color */
+            font-size: 36px;
+            text-shadow: 0 0 10px red, 0 0 20px red; /* Glowing red effect */
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+    </style>
+</head>
+<body>
+    <div id="loading">
+        <div id="progress"></div>
+    </div>
+    <div id="message"></div>
+    <div id="creepyEffect"></div>
+    <div id="finalMessage"></div>
+    <script>
+        let step = 0;
+        const totalSteps = 10;
+
+        function updateProgress() {
+            const progress = document.getElementById("progress");
+            const message = document.getElementById("message");
+            step++;
+            progress.style.width = (step / totalSteps * 100) + "%";
+            message.textContent = "Extracting data... " + (step * 10) + "% complete.";
+
+            if (step < totalSteps) {
+                setTimeout(updateProgress, 1000);
+            } else {
+                setTimeout(completeHacking, 1000);
+            }
+        }
+
+        function completeHacking() {
+            const progress = document.getElementById("loading");
+            const message = document.getElementById("message");
+            progress.style.display = "none"; // Hide the progress bar
+            message.textContent = "Access granted!";
+            setTimeout(() => {
+                message.textContent = "Warning: Unauthorized access detected!";
+            }, 1000);
+            setTimeout(() => {
+                message.textContent = "Retrieving sensitive files...";
+            }, 2000);
+            setTimeout(() => {
+                // Change theme to bloody red
+                document.body.style.backgroundColor = "darkred";
+                message.textContent = ""; // Clear previous messages
+                showFinalMessage();
+            }, 3000);
+            increaseCreepiness();
+        }
+
+        function showFinalMessage() {
+            const finalMessage = document.getElementById("finalMessage");
+            finalMessage.style.display = "block";
+            finalMessage.textContent = "Your secrets are not safe...";
+
+            setTimeout(() => {
+                finalMessage.textContent = "They are watching you...";
+            }, 3000);
+            setTimeout(() => {
+                finalMessage.textContent = "You can't escape...";
+            }, 6000);
+        }
+
+        function increaseCreepiness() {
+            const creepyEffect = document.getElementById("creepyEffect");
+            creepyEffect.style.display = "block";
+            creepyEffect.textContent = "The camera is now active...";
+            setTimeout(() => {
+                creepyEffect.textContent = "Your every move is being tracked...";
+            }, 3000);
+            setTimeout(() => {
+                creepyEffect.textContent = "Your time is running out...";
+            }, 6000);
+        }
+
+        updateProgress();
+    </script>
+</body>
+</html>
